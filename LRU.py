@@ -64,6 +64,11 @@ def init():
             pass
     INITIALISE = True
 
+def save_file():
+    with open(FILEPATH, 'w') as f:
+        f.write(json.dumps(temp.getCache()))
+
+
 
 @app.route('/set-path', methods=['POST'])
 def initFile():
@@ -76,14 +81,18 @@ def initFile():
 
 @app.route('/create', methods = ['POST'])
 def create():
-    if not INITIALISE:
-        init()
+    # if not INITIALISE:
+    #     init()
+
+    init()
+
     data = request.get_json()
     # data['data']['ttl'] = timestamp + data['data']['ttl']
-    val = data['data']
+    val = data['val']
     key = data['key']
     flag = temp.put(key,val)
     if flag:
+        save_file() 
         return jsonify(message = 'Key value pair added.')
     else:
         return jsonify(message = 'Key is already present.')
@@ -91,8 +100,11 @@ def create():
 
 @app.route('/read',methods = ['POST'])
 def read():
-    if not INITIALISE:
-        init()
+    # if not INITIALISE:
+    #     init()
+
+    init()
+
     key = request.get_json()['key']
     val = temp.get(key)
     if val == "NOT_FOUND":
@@ -102,13 +114,17 @@ def read():
 
 @app.route('/delete', methods = ['POST'])
 def erase():
-    if not INITIALISE:
-        init()
+    # if not INITIALISE:
+    #     init()
+    
+    init()
+
     key = request.get_json()['key']
     val = temp.remove(key)
     if not val:
         return jsonify(message = 'Key not found.')
     else:
+        save_file()
         return jsonify(message = 'Key successfully deleted.')
 
 
