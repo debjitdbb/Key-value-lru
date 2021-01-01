@@ -43,7 +43,7 @@ To use this, follow the following steps:
     }
     </li>
 </ul>
-
+<br><br>
 <ul>
     <li>I have used a LRU cache for this datastore which will just store 1gb of data in the memory and will omit the least recently used data when it surpasses the limit.
     <li>The entire process is thread safe which means that a client process is allowed to access the data from multiple threads.
