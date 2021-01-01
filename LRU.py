@@ -55,14 +55,18 @@ def init():
     # FILEPATH = str(filepath) + 'file.json'
     if not FILEPATH:
         FILEPATH = './file.json'
-    with open(FILEPATH,'r') as f:
-        try:
-            x = json.loads(f.read())
-            for k,v in x.items():
-                temp.put(k,v)
-        except:
-            pass
-    INITIALISE = True
+    try:
+        with open(FILEPATH,'r') as f:
+            try:
+                x = json.loads(f.read())
+                for k,v in x.items():
+                    temp.put(k,v)
+            except:
+                pass
+    except:
+        abc = open(FILEPATH, 'a')
+        abc.close()
+    # INITIALISE = True
 
 def save_file():
     with open(FILEPATH, 'w') as f:
@@ -110,7 +114,7 @@ def read():
     if val == "NOT_FOUND":
         return jsonify(message = 'Key not found.')
     else:
-        return jsonify(message = 'Found.',value = json.dumps(val))
+        return jsonify(message = 'Found.',value = val)
 
 @app.route('/delete', methods = ['POST'])
 def erase():
@@ -128,13 +132,13 @@ def erase():
         return jsonify(message = 'Key successfully deleted.')
 
 
-@app.route('/save', methods=['GET'])
-def save():
-    if not INITIALISE:
-        return jsonify(message = 'Nothing to save.')
-    with open(FILEPATH, 'w') as f:
-        f.write(json.dumps(temp.getCache()))
-    return jsonify(message = 'File saved')
+# @app.route('/save', methods=['GET'])
+# def save():
+#     if not INITIALISE:
+#         return jsonify(message = 'Nothing to save.')
+#     with open(FILEPATH, 'w') as f:
+#         f.write(json.dumps(temp.getCache()))
+#     return jsonify(message = 'File saved')
 
 
 app.run(host='0.0.0.0', port=5000)
