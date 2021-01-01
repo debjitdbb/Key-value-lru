@@ -7,15 +7,16 @@ To use this, follow the following steps:
 <li> Open postman and tinker with the following options <br>
 </ol>
 <ul>
-    <li> http://0.0.0.0:5000/set-path 
-    This is a POST request. This is basically used to set the path of the file that will be our data store, by default the file gets saved to the root of this project directory.
-    We can pass a json with "filepath" as a parameter to set our file path, like this
+    <li> 
+        http://0.0.0.0:5000/set-path 
+        This is a POST request. This is basically used to set the path of the file that will be our data store, by default the file gets saved to the root of this project directory.
+     We can pass a json with "filepath" as a parameter to set our file path, like this
     {
     "filepath":"C:\\Users\\debjitdbb\\Documents\\Work\\Projects\\Freshworks"
     }
     </li>
-
-    <li> http://0.0.0.0:5000/create
+    <li>
+             http://0.0.0.0:5000/create
     This is a POST request. This is used to add a record to the data store. The json object should have the following parameters:
         -- "key" - str - The key for the datastore
         -- "val" - json - The value in json
@@ -26,17 +27,16 @@ To use this, follow the following steps:
         "val": {"message":"dfssdf dsfsdf sdfgdsf"},
         "ttl":3
         }
-     </li>
-        
-
-    <li>  http://0.0.0.0:5000/read
+    </li>
+    <li>
+           http://0.0.0.0:5000/read
     This is a POST request. The json object takes the key and gives out the value. For eg:
     {
         "key":"3"
     }
     </li>
-
-    <li> http://0.0.0.0:5000/delete
+    <li>
+         http://0.0.0.0:5000/delete
     This is a POST request. The json object takes the key and removes the element from the datastore. For eg:
     {
         "key":"3"
