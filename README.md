@@ -5,7 +5,7 @@ To use this, follow the following steps:
 <li> Clone this repo to your local machine
 <li> Run this code by <b>python main.py</b>
 <li> Open postman and tinker with the following options <br>
-</ul>
+</ol>
 <ul>
     <li> http://0.0.0.0:5000/set-path 
     This is a POST request. This is basically used to set the path of the file that will be our data store, by default the file gets saved to the root of this project directory.
@@ -13,6 +13,7 @@ To use this, follow the following steps:
     {
     "filepath":"C:\\Users\\debjitdbb\\Documents\\Work\\Projects\\Freshworks"
     }
+    </li>
 
     <li> http://0.0.0.0:5000/create
     This is a POST request. This is used to add a record to the data store. The json object should have the following parameters:
@@ -25,19 +26,22 @@ To use this, follow the following steps:
         "val": {"message":"dfssdf dsfsdf sdfgdsf"},
         "ttl":3
         }
-
+     </li>
+        
 
     <li>  http://0.0.0.0:5000/read
     This is a POST request. The json object takes the key and gives out the value. For eg:
     {
         "key":"3"
     }
+    </li>
 
     <li> http://0.0.0.0:5000/delete
     This is a POST request. The json object takes the key and removes the element from the datastore. For eg:
     {
         "key":"3"
     }
+    </li>
 </ul>
 
 <ul>
